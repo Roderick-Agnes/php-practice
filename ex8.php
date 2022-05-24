@@ -23,30 +23,13 @@
 </head>
 <body>
     <?php
-        $tmpResult = "Được lên lớp.!#Ở lại lớp.";
-        $arrResults = explode("!#", $tmpResult);
-        $tmpType = "Giỏi.!?Khá.!?Trung bình.!?Yếu.";
-        $arrTypes = explode("!?", $tmpType);
-        $score1 = $score2 = $avgScore = "";
-        $result;$type;
+        $score1 = $score2 = $avgScore = $result = $type ="";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $score1 = $_POST["score1"];
             $score2 = $_POST["score2"];
-            $avgScore = ($score1 + $score2*2) / 3;
-            if ($avgScore >= 8) {
-                $result = "Giỏi";
-                $type = $arrTypes[0];
-            } else if ($avgScore >= 6.5) {
-                $result = "Khá";
-                $type = $arrTypes[1];
-            } else if ($avgScore >= 5) {
-                $result = "Trung bình";
-                $type = $arrTypes[2];
-            } else {
-                $result = "Yếu";
-                $type = $arrTypes[3];
-            }
+            require_once "./models/KetQuaHocTapModel.php";
+            $rs = new KetQuaHocTapModel($score1, $score2);
         }
     ?>
     <div class="container p-5">
@@ -62,15 +45,15 @@
             </div>
             <input type="submit" class="btn btn-success mt-2"></input></br>
             <div class="form-outline mt-2">
-                <input type="number" name="avgScore" id="formControlDefault" value="<?php echo $avgScore ?>" class="form-control form-control-sm bg-white" readonly/>
+                <input type="number" name="avgScore" id="formControlDefault" value="<?php echo $rs->GetAvgScore() ?>" class="form-control form-control-sm bg-white" readonly/>
                 <label class="form-label" for="formControlSm">Diem trung binh</label>
             </div>
             <div class="form-outline mt-2">
-                <input type="number" name="result" id="formControlDefault" value="<?php echo $result ?>" class="form-control form-control-sm bg-white" readonly/>
+                <input type="text" name="result" id="formControlDefault" value="<?php echo $rs->Result() ?>" class="form-control form-control-sm bg-white" readonly/>
                 <label class="form-label" for="formControlSm">Ket qua</label>
             </div>
             <div class="form-outline mt-2">
-                <input type="number" name="type" id="formControlDefault" value="<?php echo $type ?>" class="form-control form-control-sm bg-white" readonly/>
+                <input type="text" name="type" id="formControlDefault" value="<?php echo $rs->Type() ?>" class="form-control form-control-sm bg-white" readonly/>
                 <label class="form-label" for="formControlSm">Xep loai</label>
             </div>
         </form>
