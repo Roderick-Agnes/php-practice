@@ -1,13 +1,15 @@
 <?php
 class KetQuaHocTapModel {
-    protected $diemHK1;
-    protected $diemHK2;
+    protected $diemHK1 = 0;
+    protected $diemHK2 = 0;
     protected $avgScore;
     protected $result;
     protected $type;
     public function __construct($num1, $num2) {
-        $this->diemHK1 = $num1;
-        $this->diemHK2 = $num2;
+        if(isset($num1) && isset($num2)) {
+            $this->diemHK1 = $num1;
+            $this->diemHK2 = $num2;
+        }
         if ($this->GetAvgScore() >= 8) {
             $this->type = "Giỏi";
             $this->result = "Duoc len lop";
