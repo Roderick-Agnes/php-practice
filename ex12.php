@@ -35,20 +35,23 @@
                     return false;
                 }
             }
-            $in = 0;
-            foreach (range(2000, $year) as $y)
-            {
-                if(is_nam_nhuan($y)){
-                    $result[] = $y;
+            if($year != ""){
+                $in = 0;
+                foreach (range(2000, $year) as $y)
+                {
+                    if(is_nam_nhuan($y)){
+                        $result[] = $y;
+                    }
+                }
+                if(count($result) != 0) {
+                    $showResult = "<label class='alert alert-danger mt-2 p-2 w-100'>" ;
+                    for($i = 0; $i < count($result); $i++){
+                        $showResult .= $result[$i]. " ";
+                    }
+                    $showResult .=  " la nam nhuan." . "</label>";
                 }
             }
-            if(count($result) != 0) {
-                $showResult = "<label class='alert alert-danger mt-2 p-2 w-100'>" ;
-                for($i = 0; $i < count($result); $i++){
-                    $showResult .= $result[$i]. " ";
-                }
-                $showResult .=  " la nam nhuan." . "</label>";
-            }
+            
 
 
         ?>

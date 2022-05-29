@@ -78,78 +78,65 @@
 </head>
 <body>
     <?php
-        $stateResult = "";
-        $flower = $result = "";
-        $flowers_Array = array();
+        $arrayLength = "";
+        $arrayNumber = array();
+        $maxValue = $minValue = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $flower = trim($_POST["flower"]);
-            $arr_flowers_input = explode("--", trim($_POST["arr_flowers_input"]));
-            foreach($arr_flowers_input as $v){
-                if($v != "" && !flowerExisted($v)){
-                    array_push($GLOBALS["flowers_Array"], trim($v));
-                } 
-            }
-            if($flower != "") {
-                addFlowerToCart($flower);
-            }
-            
-        }
-        function flowerExisted($fl)
-        {
-            if(count($GLOBALS["flowers_Array"]) == 0) {
-                return false;
-            }
-            else {
-                for($i = 0; $i < count($GLOBALS["flowers_Array"]); $i++){
-                    if(strcasecmp($fl, $GLOBALS["flowers_Array"][$i]) == 0) {
-                        return true;
-                    }
-                }
-                return false;
+            $arrayLength = trim($_POST["arrayLength"]);
+            if($arrayLength != "") { 
+                handleRandomArrayNumber($arrayLength);
+                handleCalcMaxMin();
             }
         }
-        function addFlowerToCart($fl){
-            
-            if(count($GLOBALS["flowers_Array"]) == 0) {
-                array_push($GLOBALS["flowers_Array"], trim($fl));
-            }
-            else {
-                if(!flowerExisted(trim($fl))) {
-                    array_push($GLOBALS["flowers_Array"], trim($fl));
-                }else {
-                    $GLOBALS["stateResult"] = "<label class='alert alert-danger mt-2 p-2 w-100'> Item already exist! </label>";
-                }
+        function handleRandomArrayNumber($arrayLength) {
+            for($i = 0; $i < $arrayLength; $i++) {
+                array_push($GLOBALS["arrayNumber"], rand(0, 20));
             }
         }
-        function showFlowerArray(){
-            try {
-                if(count($GLOBALS["flowers_Array"]) != 0) {
-                    for($i = 0; $i < count($GLOBALS["flowers_Array"]); $i++){
-                        $GLOBALS["result"] .= "-- " . $GLOBALS["flowers_Array"][$i] . " ";
-                    }
-                }
-                echo $GLOBALS["result"];
-            }catch(Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }   
-            
+        function handleShowArrayRandom() {
+            foreach($GLOBALS["arrayNumber"] as $number) {
+                echo $number . " ";
+            }
         }
-        
+        function handleCalcMaxMin() {
+            $GLOBALS["maxValue"] = max($GLOBALS["arrayNumber"]);
+            $GLOBALS["minValue"] = min($GLOBALS["arrayNumber"]);
+        }
+        function handleArrayTotal() {
+            $max = 0;
+            foreach($GLOBALS["arrayNumber"] as $number) {
+                $max += $number;
+            }
+            return $max;
+        }
     ?>
     <div class="container p-5">
-        <label class="alert bg-info w-100 text-white text-center">Mua hoa</label>
-        <form action="ex14.php" method="post" class="alert alert-success">
+        <label class="alert bg-info w-100 text-white text-center">Phát sinh mảng và tính toán</label>
+        <form action="ex15.php" method="post" class="alert alert-success">
             <div class="form-outline">
-                <input type="text" name="flower" id="formControlDefault" value="<?php echo $flower ?>" class="form-control form-control-sm bg-white" />
-                <label class="form-label" for="formControlSm"> Enter flower</label>
+                <input type="number" name="arrayLength" min="1" id="formControlDefault" value="<?php echo $arrayLength ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Nhập số phần tử</label>
             </div>
             <input type="submit" class="btn btn-success mt-1"></input> </br>
-            <?php echo $stateResult ?>
+            <div class="form-outline mt-1">
+                <input type="text" name="arrayNumber" id="formControlDefault" value="<?php handleShowArrayRandom() ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Array Random</label>
+            </div>
+            <div class="form-outline mt-1">
+                <input type="number" name="maxValue" id="formControlDefault" value="<?php echo $maxValue ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Max</label>
+            </div>
+            <div class="form-outline mt-1">
+                <input type="number" name="minValue" id="formControlDefault" value="<?php echo $minValue ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Min</label>
+            </div>
+            <div class="form-outline mt-1">
+                <input type="number" name="arrayTotal" id="formControlDefault" value="<?php echo handleArrayTotal() ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Total</label>
+            </div>
             <div class="md-form mt-1 text-left">
-                <textarea name="arr_flowers_input" class="form-control" readonly>
-                    <?php showFlowerArray() ?>
-                </textarea>
+                <p class="w-100 text-center">(<span style="color:red">Ghi chú: </span>Các phần tử trong mảng sẽ só giá trị từ 0 tới 20)</p>
             </div>
             
         </form>

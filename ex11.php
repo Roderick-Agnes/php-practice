@@ -40,7 +40,7 @@
         <form action="ex11.php" method="post" class="alert alert-success">
             <div class="form-outline mt-2">
                 <input type="text" name="arrNum" id="formControlDefault" value="<?php 
-                                                                                    $i = 1;
+                                                                                    $i = 0;
                                                                                     foreach ($arrNum as $value) {
                                                                                         echo trim($value);
                                                                                         if($i!= count($arrNum)-1) {

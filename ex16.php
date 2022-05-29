@@ -78,78 +78,60 @@
 </head>
 <body>
     <?php
-        $stateResult = "";
-        $flower = $result = "";
-        $flowers_Array = array();
+        $arrayNumber = array();
+        $number = $result = "";
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $flower = trim($_POST["flower"]);
-            $arr_flowers_input = explode("--", trim($_POST["arr_flowers_input"]));
-            foreach($arr_flowers_input as $v){
-                if($v != "" && !flowerExisted($v)){
-                    array_push($GLOBALS["flowers_Array"], trim($v));
-                } 
-            }
-            if($flower != "") {
-                addFlowerToCart($flower);
-            }
-            
-        }
-        function flowerExisted($fl)
-        {
-            if(count($GLOBALS["flowers_Array"]) == 0) {
-                return false;
-            }
-            else {
-                for($i = 0; $i < count($GLOBALS["flowers_Array"]); $i++){
-                    if(strcasecmp($fl, $GLOBALS["flowers_Array"][$i]) == 0) {
-                        return true;
-                    }
+            $tmpArray = explode(",", trim($_POST["arrayNumberInput"]));
+            $number = trim($_POST["number"]);
+            for($i = 0; $i < count($tmpArray); $i++) {
+                if(trim($tmpArray[$i])!=""){
+                    array_push($arrayNumber, trim($tmpArray[$i]));
                 }
-                return false;
             }
+            findIndexOfNumber($arrayNumber, $number);
         }
-        function addFlowerToCart($fl){
-            
-            if(count($GLOBALS["flowers_Array"]) == 0) {
-                array_push($GLOBALS["flowers_Array"], trim($fl));
-            }
-            else {
-                if(!flowerExisted(trim($fl))) {
-                    array_push($GLOBALS["flowers_Array"], trim($fl));
-                }else {
-                    $GLOBALS["stateResult"] = "<label class='alert alert-danger mt-2 p-2 w-100'> Item already exist! </label>";
+        function handleShowArray($array) {
+            for($i = 0; $i < count($array); $i++) {
+                echo trim($array[$i]);
+                if($i != count($array) - 1) {
+                    echo ", ";
                 }
             }
         }
-        function showFlowerArray(){
-            try {
-                if(count($GLOBALS["flowers_Array"]) != 0) {
-                    for($i = 0; $i < count($GLOBALS["flowers_Array"]); $i++){
-                        $GLOBALS["result"] .= "-- " . $GLOBALS["flowers_Array"][$i] . " ";
-                    }
-                }
-                echo $GLOBALS["result"];
-            }catch(Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }   
-            
+        function findIndexOfNumber($arrayNumber, $number) {
+            if(array_search($number, $arrayNumber)) {
+                $GLOBALS["result"] = "Tìm thấy " . $number . " tại vị trí thứ " . array_search($number, $arrayNumber) . " của mảng";
+            }else {
+                $GLOBALS["result"] = "Không tìm thấy " . $number . " trong mảng";
+            }
         }
-        
     ?>
     <div class="container p-5">
-        <label class="alert bg-info w-100 text-white text-center">Mua hoa</label>
-        <form action="ex14.php" method="post" class="alert alert-success">
-            <div class="form-outline">
-                <input type="text" name="flower" id="formControlDefault" value="<?php echo $flower ?>" class="form-control form-control-sm bg-white" />
-                <label class="form-label" for="formControlSm"> Enter flower</label>
+        <label class="alert bg-info w-100 text-white text-center">Tìm kiếm</label>
+        <form action="ex16.php" method="post" class="alert alert-success">
+            <div class="form-outline mt-1">
+                <input type="text" name="arrayNumberInput" id="formControlDefault" value="<?php handleShowArray($arrayNumber) ?>" class="form-control form-control-sm bg-white" required/>
+                <label class="form-label" for="formControlSm">Nhập mảng</label>
             </div>
+            <div class="form-outline mt-2">
+                <input type="number" name="number" id="formControlDefault" value="<?php echo $number ?>" class="form-control form-control-sm bg-white" required/>
+                <label class="form-label" for="formControlSm">Nhập số cần tìm</label>
+            </div>
+            
             <input type="submit" class="btn btn-success mt-1"></input> </br>
-            <?php echo $stateResult ?>
+            
+            <div class="form-outline mt-1">
+                <input type="text" name="" id="formControlDefault" value="<?php handleShowArray($arrayNumber) ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm">Array</label>
+            </div>
+
+            <div class="form-outline mt-1">
+                <input type="text" name="result" id="formControlDefault" value="<?php echo $result ?>" class="form-control form-control-sm bg-white" />
+                <label class="form-label" for="formControlSm"> Kết quả tìm kiếm </label>
+            </div>
             <div class="md-form mt-1 text-left">
-                <textarea name="arr_flowers_input" class="form-control" readonly>
-                    <?php showFlowerArray() ?>
-                </textarea>
+                <p class="w-100 text-center">(Các phần tử trong mảng sẽ cách nhau bằng dấu ",")</p>
             </div>
             
         </form>

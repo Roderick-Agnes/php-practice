@@ -1,0 +1,36 @@
+[
+	{
+        "id": "nt",
+		"name": "Biển Nha Trang",
+		"image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/B%C3%A3i_bi%E1%BB%83n_Nha_Trang.jpg"
+	},
+	{
+        "id": "dl",
+		"name": "Thành phố Đà Lạt",
+		"image": "https://dulichdalat.pro/wp-content/uploads/2016/08/da-lat-ve-dem.jpg"},
+    {
+        "id": "vt",
+		"name": "Biển Vũng Tàu",
+		"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvdfqx3T6Ipa2grmWk9kx7eN6RsYMC_sVCsw&usqp=CAU"
+    },
+    {
+        "id": "hl",
+		"name": "Vịnh Hạ Long",
+		"image": "https://media.baoquangninh.com.vn/dataimages/202012/original/images1460745_anh_1.jpg"
+    },
+    {
+        "id": "pt",
+		"name": "Biển Phan Thiết",
+		"image": "https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/12/bai-rang-mui-ne.jpg"
+    },
+    {
+        "id": "ht",
+		"name": "Biển Hà Tiên",
+		"image": "http://icdn.dantri.com.vn/zoom/1200_630/2019/04/25/du-lich-ha-tien-lot-xac-loat-ong-lon-do-bo-chop-thoi-codocx-1556167842205.jpeg"
+    },
+    {
+        "id": "pq",
+		"name": "Đảo Phú Quốc",
+		"image": "https://image.bnews.vn/MediaUpload/Org/2019/12/28/102943_anh-1.jpg"
+    }
+]
