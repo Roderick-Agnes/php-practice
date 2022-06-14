@@ -32,7 +32,7 @@
             $rs = new KetQuaHocTapModel($score1, $score2);
         }
     ?>
-    <div class="container p-5">
+    <div class="container p-5 w-50">
         <label class="alert bg-info w-100 text-white text-center">KET QUA HOC TAP</label>
         <form action="ex8.php" method="post" class="alert alert-success">
             <div class="form-outline mt-2">

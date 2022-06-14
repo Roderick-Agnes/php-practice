@@ -137,7 +137,7 @@
         }
         
     ?>
-    <div class="container p-5">
+    <div class="container p-5 w-50">
         <label class="alert bg-info w-100 text-white text-center">Mua hoa</label>
         <form action="ex14.php" method="post" class="alert alert-success">
             <div class="form-outline">

@@ -35,7 +35,7 @@
                 $priceTotal = ($currentNumber - $oldNumber) * $price;
             }
         ?>
-    <div class="container p-5">
+    <div class="container p-5 w-50">
         <label class="alert bg-info w-100 text-white text-center">THANH TOAN TIEN DIEN</label>
         <form action="ex4.php" method="post" class="alert alert-success">
             <div class="form-outline mt-2">

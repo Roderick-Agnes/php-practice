@@ -23,12 +23,12 @@
 </head>
 <body>
     <?php
-        $a; $b; $result; 
+        $a = $b = $result = ''; 
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $a = $_POST["a"];
             $b = $_POST["b"];
-            if(isset($_POST["a"]) || isset($_POST["b"])) {
+            if(isset($_POST["a"]) && isset($_POST["b"])) {
                 if($a == 0) {
                     if($b == 0) {
                         $result = "Pt co vo so nghiem.";
@@ -41,10 +41,10 @@
             }
         }
     ?>
-    <div class="container p-5">
+    <div class="container p-5 w-50">
         <label class="alert bg-info w-100 text-white text-center">GIAI PHUONG TRINH BAC NHAT</label>
         <form action="ex10.php" method="post" class="alert alert-success">
-            <div class="row">   
+            <div class="row">  
                 <div class="form-outline mt-2 col-1">
                     <input type="number" name="a" id="formControlDefault" value="<?php echo $a ?>" class="form-control form-control-sm bg-white" placeholder="a..." required/>
                 </div> 

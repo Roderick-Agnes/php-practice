@@ -32,8 +32,8 @@
             
 
         ?>
-    <div class="container p-5">
-        <label class="alert bg-info w-100 text-white text-center">CANH HUYEN TAM GIAC VUONG</label>
+    <div class="container p-5 w-50">
+        <label class="alert bg-info w-100 text-white text-center">TIM SO LON HON</label>
         <form action="ex6.php" method="post" class="alert alert-success">
             <div class="form-outline mt-2">
                 <input type="number" name="aInput" id="formControlDefault" value="<?php echo $aInput ?>" class="form-control form-control-sm bg-white" />

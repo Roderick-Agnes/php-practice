@@ -24,15 +24,12 @@
 <body>
     <?php
             $fullname = $result = "";
-
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $fullname = $_POST["fullname"];
               $fullname != "" ? $result = "<label class='alert alert-danger mt-2 p-2 w-100'>Hello, " . $fullname . "</label>" : $result = "";
-            }
-            
-
+            }      
         ?>
-    <div class="container p-5">
+    <div class="container p-5 w-50">
         <label class="alert bg-info w-100 text-white text-center">IN LOI CHAO</label>
         <form action="ex1.php" method="post" class="alert alert-success">
             <div class="form-outline">
