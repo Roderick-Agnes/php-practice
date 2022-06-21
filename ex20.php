@@ -26,13 +26,14 @@
     $places = json_decode($data, true);
 
     $_SESSION['list_place'] = $places;
+    sort($_SESSION['list_place']);
     function handleGetDropdownItem()
     {
         foreach ($_SESSION['list_place'] as $place) {
             $id = $place['id'];
             echo "<li><a class='dropdown-item' href='#$id'>"  . $place['name'] . "</a></li>";
         }
-    }
+    } //href='./view/place_detail/" . $place['id'] . "'
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
